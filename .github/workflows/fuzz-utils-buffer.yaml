@@ -25,10 +25,8 @@ jobs:
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
         with:
-            profile: minimal
             toolchain: nightly
             override: true
-            components: fuzz
       - name: Run utils buffer fuzz tests for 30 seconds
         run: |
           echo Run utils buffer fuzz tests for 30 seconds

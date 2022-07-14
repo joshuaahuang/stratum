@@ -14,7 +14,8 @@
 
 echo "Script is starting"
 # rustup override set nightly
-# cd ./utils/buffer
+# cd ./utils/buffer/fuzz
+# cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000
 
 if ! timeout 10s sleep 12s
 then

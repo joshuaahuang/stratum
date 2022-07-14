@@ -1,0 +1,32 @@
+on:
+  push:
+    branches: [ * ]
+  pull_request:
+    branches: [ * ]
+# Run fuzz tests on nightly Rust
+name: Run utils buffer fuzz tests for 30 seconds
+jobs:
+  sv2_header_check:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+          - os: macos-latest
+            target: x86_64-apple-darwin
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install latest nightly
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: nightly
+            override: true
+            components: fuzz
+      - name: Run utils buffer fuzz tests for 30 seconds
+        run: |
+          echo Run utils buffer fuzz tests for 30 seconds
+          sh ./utils/buffer/fuzz-for-30-sec.sh

@@ -25,6 +25,7 @@ jobs:
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
         with:
+            profile: minimal
             toolchain: nightly
             override: true
             components: fuzz

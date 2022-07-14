@@ -1,8 +1,10 @@
 on:
   push:
-    branches: [ * ]
+    branches: 
+      - *
   pull_request:
-    branches: [ * ]
+    branches:
+      - *
 # Run fuzz tests on nightly Rust
 name: Run utils buffer fuzz tests for 30 seconds
 jobs:

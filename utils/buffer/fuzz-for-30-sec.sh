@@ -22,11 +22,20 @@ cargo install cargo-fuzz
 
 if ! timeout 30s cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000
 then
-    echo "Success. Fuzz tests pass"
+    echo "Success. Faster fuzz tests pass"
     sleep 3s
-    exit 0
+    if ! timeout 30s cargo +nightly fuzz run slower -- -rss_limit_mb=5000000000
+    then
+        echo "Success. Slower fuzz tests pass"
+        sleep 3s
+        exit 0
+    else 
+        echo "Failure. Slower fuzz tests don't pass"
+        sleep 3s
+        exit -1
+    fi
 else 
-    echo "Failure. Fuzz tests don't pass"
+    echo "Failure. Faster fuzz tests don't pass"
     sleep 3s
     exit -1
 fi

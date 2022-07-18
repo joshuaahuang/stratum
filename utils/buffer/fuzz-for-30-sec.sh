@@ -21,4 +21,11 @@ cd fuzz
 cargo install cargo-fuzz
 echo "Fuzzing begins"
 cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000
-
+# if ! timeout 30s cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000
+# then
+    # echo "Success. Fuzz tests pass"
+    # sleep 3s
+# else
+    # sleep 3s
+    # exit -1
+# fi

@@ -18,7 +18,7 @@
 echo "Fuzztest script is starting"
 rustup override set nightly
 cd fuzz
-# cargo install cargo-fuzz
+cargo install cargo-fuzz
 echo "Fuzzing begins"
 cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000
 # if ! timeout 30s cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000

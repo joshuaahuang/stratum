@@ -18,6 +18,7 @@
 echo "Fuzztest script is starting"
 # rustup override set nightly
 cd fuzz
+curl https://sh.rustup.rs -sSf | sh
 cargo install cargo-fuzz
 echo "Fuzzing begins"
 cargo +nightly fuzz run faster -- -rss_limit_mb=5000000000

@@ -25,9 +25,13 @@ jobs:
             toolchain: nightly
             override: true
       - name: Run utils buffer fuzz tests for 30 seconds no timeout
-        run: timeout 5 script ./utils/buffer/fuzz-for-30-sec.sh || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+        run: |
+          chmod +x "./utils/buffer/fuzz-for-30-sec.sh"
+          timeout 5 script ./utils/buffer/fuzz-for-30-sec.sh || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
       - name: Run utils buffer fuzz tests for 30 seconds timeout
-        run: timeout 1 script ./utils/buffer/fuzz-for-30-sec.sh || code =$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+        run: | 
+          chmod +x "./utils/buffer/fuzz-for-30-sec.sh"
+          timeout 1 script ./utils/buffer/fuzz-for-30-sec.sh || code =$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
     # steps:
           # - uses: actions/checkout@v2
           # - uses: actions/setup-python@v2

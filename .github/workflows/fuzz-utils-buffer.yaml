@@ -28,7 +28,7 @@ jobs:
         run: |
           # chmod +x "./utils/buffer/fuzz-for-30-sec.sh"
           cd ./utils/buffer
-          timeout 100 sh ./fuzz-for-30-sec.sh || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+          timeout 10m sh ./fuzz-for-30-sec.sh || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
       - name: Run utils buffer fuzz tests for 30 seconds timeout
         run: | 
           # chmod +x "./utils/buffer/fuzz-for-30-sec.sh"

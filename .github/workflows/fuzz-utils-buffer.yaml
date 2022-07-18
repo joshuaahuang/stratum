@@ -28,9 +28,7 @@ jobs:
             toolchain: nightly
             override: true
       - name: Run utils buffer fuzz tests for 30 seconds no timeout
-        run: |
-          echo Run utils buffer fuzz tests for 30 seconds
-          timeout 5 sh ./utils/buffer/fuzz-for-30-sec.sh || code=?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+        run: timeout 5 sh ./utils/buffer/fuzz-for-30-sec.sh || code=?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
       - name: Run utils buffer fuzz tests for 30 seconds timeout
         run: timeout 1 sh ./utils/buffer/fuzz-for-30-sec.sh || code =?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
           

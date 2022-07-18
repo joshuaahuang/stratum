@@ -16,7 +16,7 @@
 #
 
 echo "Fuzztest script is starting"
-rustup override set nightly
+# rustup override set nightly
 cd fuzz
 cargo install cargo-fuzz
 echo "Fuzzing begins"

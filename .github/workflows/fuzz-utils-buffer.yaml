@@ -13,13 +13,10 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-latest
           - ubuntu-latest
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
-          - os: macos-latest
-            target: x86_64-apple-darwin
     # steps:
       # - uses: actions/checkout@v2
       # - name: Install latest nightly
@@ -37,6 +34,6 @@ jobs:
             with:
               python-version: '3.x'
           - name: no timeout
-            run: timeout 10 python ./utils/buffer/test.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+            run: timeout 10 python ./testing-fuzz/test.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
           - name: timeout # We add or so that return code is not none-zero which causes pipeline to fail
-            run: timeout 1 python ./utils/buffer/test.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi          
+            run: timeout 1 python ./testing-fuzz/test.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi          
